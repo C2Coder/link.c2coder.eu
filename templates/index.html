@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ site.title }} - Links</title>
+<meta name="description" content="{{ site.tagline }}">
+<link rel="icon" href="/assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/site.css">
+<script>
+  (function () {
+    var savedTheme = localStorage.getItem("theme");
+    var theme = savedTheme || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    document.documentElement.setAttribute("data-theme", theme);
+    var tab = window.location.hash === "#photo" ? "photo" : "main";
+    document.documentElement.setAttribute("data-tab", tab);
+  })();
+</script>
+</head>
+<body>
+  <header class="masthead">
+    <div class="wrap masthead-row">
+      <a href="/" class="wordmark">{{ site.title }}<span class="wordmark-dot">.</span></a>
+      <div class="masthead-controls">
+        <button class="ctrl-btn" id="themeToggle" type="button" aria-label="Toggle theme">DARK</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <section class="links-head">
+        <p class="tag-label">{{ site.eyebrow }}</p>
+        <h1 class="wordmark-lg">{{ site.title }}<span class="wordmark-dot">.</span></h1>
+        <p class="tagline">{{ site.tagline }}</p>
+      </section>
+
+      <nav class="tab-switch" id="tabSwitch">
+        {% for tab in tabs %}
+        <button class="tab-btn" type="button" data-tab-id="{{ tab.id }}">
+          <span class="nav-index">{{ "%02d"|format(loop.index) }}</span>{{ tab.label }}
+        </button>
+        {% endfor %}
+      </nav>
+
+      {% for tab in tabs %}
+      <section class="link-list" data-tab-panel="{{ tab.id }}">
+        {% for link in tab.links %}
+        <a class="link-row" href="{{ link.url }}"{% if link.url.startswith('http') %} target="_blank" rel="noopener"{% endif %}>
+          <span class="link-row-icon">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">{{ icons[link.icon] | safe }}</svg>
+          </span>
+          <span class="link-row-body">
+            <span class="link-row-label">{{ link.label }}</span>
+            <span class="link-row-sub">{{ link.sublabel }}</span>
+          </span>
+          <span class="link-row-arrow">&#8594;</span>
+        </a>
+        {% endfor %}
+      </section>
+      {% endfor %}
+    </div>
+  </main>
+
+  <footer class="colophon">
+    <div class="wrap colophon-row">
+      <p class="quote">"{{ shared.footer.quote }}"</p>
+      <p class="meta">© <span id="year"></span> <a href="{{ shared.contact.github }}" target="_blank" rel="noopener">{{ site.title }}</a></p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    function currentTheme() { return document.documentElement.getAttribute("data-theme"); }
+    function paintThemeButton() {
+      document.getElementById("themeToggle").textContent = currentTheme() === "dark" ? "LIGHT" : "DARK";
+    }
+    paintThemeButton();
+    document.getElementById("themeToggle").addEventListener("click", function () {
+      var next = currentTheme() === "dark" ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", next);
+      localStorage.setItem("theme", next);
+      paintThemeButton();
+    });
+
+    var panels = document.querySelectorAll("[data-tab-panel]");
+    var buttons = document.querySelectorAll("#tabSwitch .tab-btn");
+
+    function applyTab(id) {
+      document.documentElement.setAttribute("data-tab", id);
+      panels.forEach(function (panel) {
+        panel.hidden = panel.getAttribute("data-tab-panel") !== id;
+      });
+      buttons.forEach(function (btn) {
+        btn.classList.toggle("is-active", btn.getAttribute("data-tab-id") === id);
+      });
+    }
+
+    function tabFromHash() {
+      return window.location.hash === "#photo" ? "photo" : "main";
+    }
+
+    applyTab(tabFromHash());
+
+    buttons.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var id = btn.getAttribute("data-tab-id");
+        window.location.hash = id === "photo" ? "photo" : "";
+        applyTab(id);
+      });
+    });
+
+    window.addEventListener("hashchange", function () {
+      applyTab(tabFromHash());
+    });
+  </script>
+</body>
+</html>
