@@ -1,12 +1,10 @@
 # link.c2coder.eu
 
-Source for [link.c2coder.eu](https://link.c2coder.eu) - a two-tab link page for
-the C2Coder brand, meant mainly to be scanned from a printed QR code. One tab
-for the general C2Coder identity (portfolio, GitHub, email), one for the
+Source for [link.c2coder.eu](https://link.c2coder.eu) - a custom styled linktreec clone, meant mainly to be scanned from a printed QR code. One tab
+for the general (portfolio, GitHub, email), one for the
 photography side (`photo.c2coder.eu`, Instagram). Built the same way as its
-sibling sites, `../c2coder.github.io` and `../photo.c2coder.eu` - a static site
-from a small Python + Jinja2 generator, deployed to GitHub Pages. See
-`../c2coder.github.io/DESIGN.md` for the shared visual language.
+sibling sites, `c2coder.eu` and `photo.c2coder.eu` - a static site
+from a small Python + Jinja2 generator, deployed to GitHub Pages.
 
 ## Layout
 
