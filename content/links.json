@@ -2,7 +2,7 @@
   "site": {
     "title": "C2Coder",
     "eyebrow": "Links",
-    "tagline": "Everything in one place — projects, code, and photography."
+    "tagline": "Everything in one place - projects, code, and photography."
   },
   "shared": {
     "footer": { "quote": "The best machine is the one you have" },
@@ -11,7 +11,7 @@
   "tabs": [
     {
       "id": "main",
-      "label": "C2Coder",
+      "label": "Main",
       "links": [
         { "label": "Portfolio", "sublabel": "c2coder.eu", "url": "https://c2coder.eu", "icon": "external-link" },
         { "label": "GitHub", "sublabel": "@C2Coder", "url": "https://github.com/C2Coder", "icon": "github" },
@@ -22,7 +22,7 @@
       "id": "photo",
       "label": "Photo",
       "links": [
-        { "label": "Photography", "sublabel": "photo.c2coder.eu", "url": "https://photo.c2coder.eu", "icon": "aperture" },
+        { "label": "Portfolio", "sublabel": "photo.c2coder.eu", "url": "https://photo.c2coder.eu", "icon": "external-link" },
         { "label": "Instagram", "sublabel": "@photo.c2c", "url": "https://instagram.com/photo.c2c", "icon": "instagram" }
       ]
     }

@@ -50,9 +50,7 @@
       <section class="link-list" data-tab-panel="{{ tab.id }}">
         {% for link in tab.links %}
         <a class="link-row" href="{{ link.url }}"{% if link.url.startswith('http') %} target="_blank" rel="noopener"{% endif %}>
-          <span class="link-row-icon">
-            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">{{ icons[link.icon] | safe }}</svg>
-          </span>
+          <span class="link-row-icon">{{ icons[link.icon] | safe }}</span>
           <span class="link-row-body">
             <span class="link-row-label">{{ link.label }}</span>
             <span class="link-row-sub">{{ link.sublabel }}</span>

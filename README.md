@@ -1,10 +1,10 @@
 # link.c2coder.eu
 
-Source for [link.c2coder.eu](https://link.c2coder.eu) — a two-tab link page for
+Source for [link.c2coder.eu](https://link.c2coder.eu) - a two-tab link page for
 the C2Coder brand, meant mainly to be scanned from a printed QR code. One tab
 for the general C2Coder identity (portfolio, GitHub, email), one for the
 photography side (`photo.c2coder.eu`, Instagram). Built the same way as its
-sibling sites, `../c2coder.github.io` and `../photo.c2coder.eu` — a static site
+sibling sites, `../c2coder.github.io` and `../photo.c2coder.eu` - a static site
 from a small Python + Jinja2 generator, deployed to GitHub Pages. See
 `../c2coder.github.io/DESIGN.md` for the shared visual language.
 
@@ -22,16 +22,16 @@ build.py         # renders content/links.json through templates/index.html into 
 ## Content model
 
 `content/links.json` has `site` (title, eyebrow, tagline), `shared` (footer
-quote, GitHub link for the colophon), and `tabs` — a list of two tabs
+quote, GitHub link for the colophon), and `tabs` - a list of two tabs
 (`main`, `photo`), each with a `label` and a `links` array. Each link is
 `{ label, sublabel, url, icon }`, where `icon` is a key into the icon dict in
-`build.py` (`external-link`, `github`, `mail`, `aperture`, `instagram`).
+`build.py` (`external-link`, `github`, `mail`, `instagram`).
 Adding, removing, or reordering links is a JSON-only change.
 
 The photo tab's accent color (darkroom-red, matching `photo.c2coder.eu`) is
 applied via a `data-tab="photo"` attribute on `<html>`, toggled by the tab
 switcher in `templates/index.html`. Both tabs' markup is always present in the
-rendered page — switching is a `hidden`-attribute toggle done in JS, so the
+rendered page - switching is a `hidden`-attribute toggle done in JS, so the
 page is still fully readable with JS disabled.
 
 ## Build & run
