@@ -1,8 +1,7 @@
 {
   "site": {
     "title": "C2Coder",
-    "eyebrow": "Links",
-    "tagline": "Everything in one place - projects, code, and photography."
+    "eyebrow": "Links"
   },
   "shared": {
     "footer": { "quote": "The best machine is the one you have" },
