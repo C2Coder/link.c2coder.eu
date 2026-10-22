@@ -4,7 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 {% include "_seo.html" %}
-<link rel="icon" href="/assets/favicon.png">
+<link rel="icon" href="/assets/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="/assets/favicon.png">
+<meta name="theme-color" content="#f2f4f1" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0d1113" media="(prefers-color-scheme: dark)">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -64,6 +67,7 @@
   <footer class="colophon">
     <div class="wrap colophon-row">
       <p class="quote">"{{ shared.footer.quote }}"</p>
+      <p class="meta"><a href="https://photo.c2coder.eu">C2Coder photography</a> · <a href="https://qr.c2coder.eu">QR code generator</a></p>
       <p class="meta">© <span id="year"></span> <a href="{{ shared.contact.github }}" target="_blank" rel="noopener">{{ site.title }}</a> <button type="button" class="cookies-btn" id="cookies">Cookies</button></p>
     </div>
   </footer>

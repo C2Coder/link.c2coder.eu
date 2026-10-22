@@ -78,7 +78,7 @@ def build() -> None:
     image = base + "/assets/favicon.png"
     same_as = [link["url"] for tab in data["tabs"] for link in tab["links"] if link["url"].startswith("http")]
     seo = {
-        "title": f"{site['title']} - Links",
+        "title": f"{site['title']} Links - Website, Photography, GitHub",
         "description": site["description"],
         "url": base + "/",
         "type": "profile",
@@ -87,12 +87,13 @@ def build() -> None:
         "jsonld": ld({
             "@context": "https://schema.org",
             "@type": "ProfilePage",
-            "name": f"{site['title']} - Links",
+            "name": f"{site['title']} Links",
             "url": base + "/",
             "inLanguage": "en",
             "mainEntity": {
                 "@type": "Person",
                 "name": site["title"],
+                "url": "https://c2coder.eu/",
                 "image": image,
                 "sameAs": same_as,
             },

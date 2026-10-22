@@ -2,7 +2,7 @@
   "site": {
     "title": "C2Coder",
     "eyebrow": "Links",
-    "description": "Links to the portfolio, photography, GitHub and contact of C2Coder."
+    "description": "All C2Coder links in one place: personal website, photo portfolio, QR code generator, GitHub, Instagram and email."
   },
   "shared": {
     "footer": { "quote": "The best machine is the one you have" },
@@ -13,7 +13,8 @@
       "id": "main",
       "label": "Main",
       "links": [
-        { "label": "Portfolio", "sublabel": "c2coder.eu", "url": "https://c2coder.eu", "icon": "external-link" },
+        { "label": "C2Coder website", "sublabel": "c2coder.eu", "url": "https://c2coder.eu", "icon": "external-link" },
+        { "label": "QR code generator", "sublabel": "qr.c2coder.eu", "url": "https://qr.c2coder.eu", "icon": "external-link" },
         { "label": "GitHub", "sublabel": "@C2Coder", "url": "https://github.com/C2Coder", "icon": "github" },
         { "label": "Email", "sublabel": "me@c2coder.eu", "url": "mailto:me@c2coder.eu", "icon": "mail" }
       ]
@@ -22,7 +23,7 @@
       "id": "photo",
       "label": "Photo",
       "links": [
-        { "label": "Portfolio", "sublabel": "photo.c2coder.eu", "url": "https://photo.c2coder.eu", "icon": "external-link" },
+        { "label": "C2Coder photography", "sublabel": "photo.c2coder.eu", "url": "https://photo.c2coder.eu", "icon": "external-link" },
         { "label": "Instagram", "sublabel": "@photo.c2c", "url": "https://instagram.com/photo.c2c", "icon": "instagram" }
       ]
     }
