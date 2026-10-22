@@ -3,8 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{{ site.title }} - Links</title>
-<meta name="description" content="{{ site.tagline }}">
+{% include "_seo.html" %}
 <link rel="icon" href="/assets/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -65,7 +64,7 @@
   <footer class="colophon">
     <div class="wrap colophon-row">
       <p class="quote">"{{ shared.footer.quote }}"</p>
-      <p class="meta">© <span id="year"></span> <a href="{{ shared.contact.github }}" target="_blank" rel="noopener">{{ site.title }}</a></p>
+      <p class="meta">© <span id="year"></span> <a href="{{ shared.contact.github }}" target="_blank" rel="noopener">{{ site.title }}</a> <button type="button" class="cookies-btn" id="cookies">Cookies</button></p>
     </div>
   </footer>
 
@@ -115,5 +114,12 @@
       applyTab(tabFromHash());
     });
   </script>
+  <div class="consent" id="consent" hidden>
+    <span>Analytics cookies help me see how the site is used.</span>
+    <button type="button" class="ctrl-btn" id="consent_no">Decline</button>
+    <button type="button" class="ctrl-btn ctrl-btn-accent" id="consent_yes">Accept</button>
+  </div>
+
+  <script src="/assets/js/analytics.js"></script>
 </body>
 </html>

@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import shutil
 import sys
+from datetime import date
 from pathlib import Path
 
 from jinja2 import Environment, FileSystemLoader
@@ -45,6 +46,25 @@ def load_json(name: str):
         return json.load(handle)
 
 
+def base_url() -> str:
+    return "https://" + (ROOT / "CNAME").read_text().strip()
+
+
+def ld(data: dict) -> str:
+    return json.dumps(data, ensure_ascii=False).replace("<", "\\u003c")
+
+
+def write_seo_files(base: str, paths: list[str]) -> None:
+    today = date.today().isoformat()
+    (DIST / "robots.txt").write_text(f"User-agent: *\nAllow: /\n\nSitemap: {base}/sitemap.xml\n", encoding="utf-8")
+    urls = "".join(f"  <url><loc>{base}{p}</loc><lastmod>{today}</lastmod></url>\n" for p in paths)
+    (DIST / "sitemap.xml").write_text(
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        f'<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{urls}</urlset>\n',
+        encoding="utf-8",
+    )
+
+
 def build() -> None:
     if DIST.exists():
         shutil.rmtree(DIST)
@@ -53,13 +73,42 @@ def build() -> None:
     env = Environment(loader=FileSystemLoader(TEMPLATES))
     data = load_json("links.json")
 
+    base = base_url()
+    site = data["site"]
+    image = base + "/assets/favicon.png"
+    same_as = [link["url"] for tab in data["tabs"] for link in tab["links"] if link["url"].startswith("http")]
+    seo = {
+        "title": f"{site['title']} - Links",
+        "description": site["description"],
+        "url": base + "/",
+        "type": "profile",
+        "image": image,
+        "card": "summary",
+        "jsonld": ld({
+            "@context": "https://schema.org",
+            "@type": "ProfilePage",
+            "name": f"{site['title']} - Links",
+            "url": base + "/",
+            "inLanguage": "en",
+            "mainEntity": {
+                "@type": "Person",
+                "name": site["title"],
+                "image": image,
+                "sameAs": same_as,
+            },
+        }),
+    }
+
     html = env.get_template("index.html").render(
-        site=data["site"],
+        seo=seo,
+        site=site,
         shared=data["shared"],
         tabs=data["tabs"],
         icons=ICONS,
     )
     (DIST / "index.html").write_text(html, encoding="utf-8")
+
+    write_seo_files(base, ["/"])
 
     c_name = ROOT / "CNAME"
     if c_name.exists():

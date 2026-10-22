@@ -1,7 +1,8 @@
 {
   "site": {
     "title": "C2Coder",
-    "eyebrow": "Links"
+    "eyebrow": "Links",
+    "description": "Links to the portfolio, photography, GitHub and contact of C2Coder."
   },
   "shared": {
     "footer": { "quote": "The best machine is the one you have" },
